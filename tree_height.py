@@ -4,7 +4,6 @@ import sys
 import threading
 import numpy as np
 
-
 # function to compute the height of the tree
 def compute_height(n, parents):
     # create an empty tree as a list of lists
@@ -69,3 +68,4 @@ threading.stack_size(2**27)
 
 # create a new thread and start the main function
 threading.Thread(target=main).start()
+
