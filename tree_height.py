@@ -1,45 +1,61 @@
 # python3
 
+import sys
 import threading
-
-
-def compute_height(n, parents):
-    tree = [[] for i in range(n)]
-    for i, parent in enumerate(parents):
-        if parent != -1:
-            tree[parent].append(i)
-
-    root = parents.index(-1)
-    queue = [(root, 0)]
+import numpy
+import os
+    
+class Node:
+    def _init_(self, data):
+        self.data = data
+        self.children = []
+      
+def find_height(n, parent):
+    nodes = [Node(i) for i in range (n)]
+    root = None
+        
+    for i in range(n):
+        if parent[i] == -1:
+            root = nodes[i]
+        else:
+            parent_node = nodes[parent[i]]
+            parent_node.children.append(nodes[i])
+                
     max_height = 0
-
+    queue = [(root, 1)]
+   
     while queue:
-        node, height = queue.pop(0)
-        max_height = max(max_height, height)
-        for child in tree[node]:
-            queue.append((child, height + 1))
+        node, level = queue.pop(0)
+        if level > max_height:
+            max_height = level
+        for child in node.children:
+            queue.append((child, level + 1))
     return max_height
 
-
 def main():
-    text = input()
-    if text[0] == "I":
-        n = int(input())
-        parents_str = input()
-        parents = list(map(int, parents_str.split()))
-        height = compute_height(n, parents)
-    elif text[0] == "F":
-        file_name = "test/"
-        file_name = file_name + input()
-        if "a" in file_name:
-            return
-        with open(file_name, 'r') as file:
-            n = int(file.readline())
-            parents_str = file.readline().strip()
-            parents = list(map(int, parents_str.split()))
-            height = compute_height(n, parents)
-    print(height)
+    while True:
+        vai = input().strip().upper()
+        if vai == "I":
+            n = int(input())
+            parent = list(map(int, input().split()))
+            break
+        elif vai == "F":
+            fails = input()
+            if os.path.exists(fails):
+                with open(fails) as f:
+                    n = int(f.readline().strip())
+                    parent = list(map(int, f.readline().strip().split()))
+                break
+            else:
+                print()
+        else:
+            print()
+            
+    height = find_height(n, parent)
+    print(height)      
+    pass
 
-
-threading.stack_size(2**27)
-threading.Thread(target=main).start()
+if _name_ == '_main_':
+    sys.setrecursionlimit(10**7)
+    threading.stack_size(2**27)
+    threading.Thread(target=main).start()
