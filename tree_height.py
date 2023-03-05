@@ -2,7 +2,7 @@
 
 import sys
 import threading
-import numpy
+import numpy as np
 
 
 def compute_height(n, parents):
@@ -31,7 +31,8 @@ def main():
     parents=np.array(list(map(int, parents_str.split())))
     height=compute_height(n, parents)
   elif text[0]=="F":
-    file_name=input()
+    file_name="test/"
+    file_name=file_name+input()
     if "a" in file_name:
       print("WRONG ANSWER")
       return
@@ -45,4 +46,4 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-main()
+#main()
