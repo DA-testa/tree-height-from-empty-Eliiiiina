@@ -34,7 +34,7 @@ def main():
     file_name="test/"
     file_name=file_name+input()
     if "a" in file_name:
-      print("WRONG ANSWER")
+      #print("WRONG ANSWER")
       return
     with open(file_name,'r') as file:
       n=int(file.readline())
