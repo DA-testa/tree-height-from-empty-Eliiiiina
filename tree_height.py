@@ -104,9 +104,9 @@ def main():
             parents_str = file.readline().strip()
             parents = np.array(list(map(int, parents_str.split())))
             height = compute_height(n, parents)
-    else:
-        print("Invalid input type")
-        return
+    #else:
+       # print("Invalid input type")
+        #return
     
     # output the height of the tree
     print(height)
