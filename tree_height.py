@@ -41,7 +41,7 @@ def main():
       parents_str=file.readline().strip()
       parents=np.array(list(map(int,parents_str.split())))
       height=compute_height(n,parents)
-  print(height)        
+    print(height)           
 
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
