@@ -41,15 +41,7 @@ def main():
                 parents_str = file.readline().strip()
                 parents = np.array(list(map(int, parents_str.split())))
                 height = compute_height(n, parents)
-        except FileNotFoundError:
-            print("Error: File not found")
-            return
-    else:
-        print("Error: Invalid input")
-        return
-
     print(height)
-
 
 if __name__ == '__main__':
     sys.setrecursionlimit(10 ** 7)
