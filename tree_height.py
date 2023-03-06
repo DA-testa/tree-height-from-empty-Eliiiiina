@@ -33,7 +33,6 @@ def main():
     elif text == "F":
         file_name = "test/" + input().strip()
         if "a" in file_name:
-            print("Error: File name not allowed")
             return
         try:
             with open(file_name, 'r') as file:
@@ -41,11 +40,18 @@ def main():
                 parents_str = file.readline().strip()
                 parents = np.array(list(map(int, parents_str.split())))
                 height = compute_height(n, parents)
+        except FileNotFoundError:
+            return
+    else:
+        return
+
     print(height)
+
 
 if __name__ == '__main__':
     sys.setrecursionlimit(10 ** 7)
     threading.stack_size(2 ** 27)
     threading.Thread(target=main).start()
+
 
 
