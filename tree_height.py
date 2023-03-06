@@ -24,14 +24,17 @@ def compute_height(n, parents):
 
 
 def main():
-    text = input()
-    if text[0] == "I":
-        n = int(input())
+    input_str = input().strip()
+    if input_str[0] == "I":
+        n = int(input().strip())
         parents_str = input().strip()
         parents = np.array(list(map(int, parents_str.split())))
         height = compute_height(n, parents)
-    elif text[0] == "F":
+    elif input_str[0] == "F":
         file_name = "test/" + input().strip()
+        if "a" in file_name:
+            print("Error: Invalid file name")
+            return
         try:
             with open(file_name, 'r') as file:
                 n = int(file.readline().strip())
@@ -52,3 +55,4 @@ if __name__ == '__main__':
     sys.setrecursionlimit(10 ** 7)
     threading.stack_size(2 ** 27)
     threading.Thread(target=main).start()
+
